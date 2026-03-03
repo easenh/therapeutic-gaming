@@ -7,41 +7,49 @@
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <div class="koi-layer">
-  <!-- Koi 1 -->
-  <svg class="koi" style="top:20%; left:-150px;" viewBox="0 0 200 100">
-    <path d="M10 50 Q40 20 90 50 Q140 80 190 50 Q140 20 90 50 Q40 80 10 50Z"
-          fill="#ff8c66"/>
-    <circle cx="165" cy="48" r="4" fill="#333"/>
+  <div class="koi-layer" id="koiLayer" aria-hidden="true">
+  <!-- Koi templates (SVGs). JS will randomize position, direction, speed, and depth. -->
+  <svg class="koi" viewBox="0 0 220 120" data-depth="0.8">
+    <g class="fish">
+      <path class="body" d="M20 60 C55 25, 110 20, 150 55 C175 75, 205 70, 212 60 C205 50, 175 45, 150 65 C110 95, 55 95, 20 60Z"/>
+      <path class="tail" d="M18 60 C6 48, 6 72, 18 60Z"/>
+      <path class="fin" d="M95 72 C85 78, 80 88, 92 86 C100 84, 106 78, 95 72Z"/>
+      <circle class="eye" cx="176" cy="56" r="3.6"/>
+      <!-- sparkles -->
+      <circle class="sparkle s1" cx="170" cy="45" r="2.2"/>
+      <circle class="sparkle s2" cx="185" cy="42" r="1.6"/>
+      <circle class="sparkle s3" cx="195" cy="52" r="1.9"/>
+      <!-- gentle vein-like highlight -->
+      <path class="shine" d="M60 58 C90 40, 125 42, 155 56"/>
+    </g>
   </svg>
 
-  <!-- Koi 2 -->
-  <svg class="koi" style="top:60%; left:-300px;" viewBox="0 0 200 100">
-    <path d="M10 50 Q40 20 90 50 Q140 80 190 50 Q140 20 90 50 Q40 80 10 50Z"
-          fill="#ffb347"/>
-    <circle cx="165" cy="48" r="4" fill="#333"/>
+  <svg class="koi" viewBox="0 0 220 120" data-depth="0.55">
+    <g class="fish">
+      <path class="body" d="M20 60 C55 25, 110 20, 150 55 C175 75, 205 70, 212 60 C205 50, 175 45, 150 65 C110 95, 55 95, 20 60Z"/>
+      <path class="tail" d="M18 60 C6 48, 6 72, 18 60Z"/>
+      <path class="fin" d="M95 72 C85 78, 80 88, 92 86 C100 84, 106 78, 95 72Z"/>
+      <circle class="eye" cx="176" cy="56" r="3.6"/>
+      <circle class="sparkle s1" cx="170" cy="45" r="2.2"/>
+      <circle class="sparkle s2" cx="185" cy="42" r="1.6"/>
+      <circle class="sparkle s3" cx="195" cy="52" r="1.9"/>
+      <path class="shine" d="M60 58 C90 40, 125 42, 155 56"/>
+    </g>
   </svg>
 
-  <!-- Koi 3 -->
-  <svg class="koi" style="top:40%; left:-450px;" viewBox="0 0 200 100">
-    <path d="M10 50 Q40 20 90 50 Q140 80 190 50 Q140 20 90 50 Q40 80 10 50Z"
-          fill="#ffffff"/>
-    <circle cx="165" cy="48" r="4" fill="#333"/>
+  <svg class="koi" viewBox="0 0 220 120" data-depth="0.35">
+    <g class="fish">
+      <path class="body" d="M20 60 C55 25, 110 20, 150 55 C175 75, 205 70, 212 60 C205 50, 175 45, 150 65 C110 95, 55 95, 20 60Z"/>
+      <path class="tail" d="M18 60 C6 48, 6 72, 18 60Z"/>
+      <path class="fin" d="M95 72 C85 78, 80 88, 92 86 C100 84, 106 78, 95 72Z"/>
+      <circle class="eye" cx="176" cy="56" r="3.6"/>
+      <circle class="sparkle s1" cx="170" cy="45" r="2.2"/>
+      <circle class="sparkle s2" cx="185" cy="42" r="1.6"/>
+      <circle class="sparkle s3" cx="195" cy="52" r="1.9"/>
+      <path class="shine" d="M60 58 C90 40, 125 42, 155 56"/>
+    </g>
   </svg>
 </div>
-  <header class="top">
-    <div class="brand">
-      <div class="logo">🎮</div>
-      <div>
-        <h1>Therapeutic Gaming Finder</h1>
-        <p class="sub">Search games that can support kids during pain, sadness, boredom, anxiety/hyperactivity, or cognitive challenges.</p>
-      </div>
-    </div>
-    <div class="note">
-      <span class="pill">Parent-friendly</span>
-      <span class="pill">Kid-friendly</span>
-      <span class="pill">Fast on phones</span>
-    </div>
   </header>
 
   <main class="wrap">
