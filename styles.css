@@ -451,3 +451,112 @@ html .koi-layer {
   75%  { transform: translateX(85vw) translateY(-10px) rotate(2deg); }
   100% { transform: translateX(110vw) translateY(0px) rotate(0deg); }
 }
+
+/* =========================
+   KOI FISH (slow swim + tail flick + depth + sparkles + parallax)
+   ========================= */
+
+.koi-layer{
+  position: fixed;
+  inset: 0;
+  z-index: -4;          /* behind canopy (-2/-3), above water (-6/-5) */
+  pointer-events: none;
+  overflow: hidden;
+
+  /* parallax (set by JS) */
+  transform: translate(calc(var(--pondX, 0) * 10px), calc(var(--pondY, 0) * 10px));
+}
+
+.koi{
+  position: absolute;
+  width: var(--koiSize, 140px);
+  opacity: var(--koiOpacity, .55);
+
+  /* 3 animations at once: swim, bob, and “depth pulse” */
+  animation:
+    swimRight var(--koiDur, 55s) linear infinite,
+    bob var(--bobDur, 5.5s) ease-in-out infinite,
+    depthPulse var(--depthDur, 12s) ease-in-out infinite;
+
+  transform: translateX(-30vw); /* start off-screen */
+  filter: blur(var(--koiBlur, 0px)) saturate(1.05);
+}
+
+/* Some fish swim left */
+.koi.left{
+  animation-name: swimLeft, bob, depthPulse;
+}
+
+@keyframes swimRight{
+  0%   { transform: translateX(-35vw) translateY(0px) rotate(0deg); }
+  25%  { transform: translateX(15vw)  translateY(-10px) rotate(2deg); }
+  50%  { transform: translateX(55vw)  translateY(8px) rotate(-1.5deg); }
+  75%  { transform: translateX(85vw)  translateY(-6px) rotate(1deg); }
+  100% { transform: translateX(120vw) translateY(0px) rotate(0deg); }
+}
+@keyframes swimLeft{
+  0%   { transform: translateX(120vw) translateY(0px) rotate(0deg); }
+  25%  { transform: translateX(85vw)  translateY(10px) rotate(-2deg); }
+  50%  { transform: translateX(45vw)  translateY(-8px) rotate(1.5deg); }
+  75%  { transform: translateX(15vw)  translateY(6px) rotate(-1deg); }
+  100% { transform: translateX(-35vw) translateY(0px) rotate(0deg); }
+}
+
+@keyframes bob{
+  0%   { translate: 0 0; }
+  50%  { translate: 0 -10px; }
+  100% { translate: 0 0; }
+}
+
+/* Depth = sometimes they feel nearer/farther (opacity + tiny scale changes) */
+@keyframes depthPulse{
+  0%   { opacity: var(--koiOpacity, .55); scale: 1; }
+  50%  { opacity: calc(var(--koiOpacity, .55) - .10); scale: 0.97; }
+  100% { opacity: var(--koiOpacity, .55); scale: 1; }
+}
+
+/* SVG styling */
+.koi .body{ fill: var(--koiColor, #ffb38a); }
+.koi .eye{ fill: rgba(20,20,20,.78); }
+.koi .fin{ fill: rgba(255,255,255,.30); }
+.koi .shine{
+  fill: none;
+  stroke: rgba(255,255,255,.35);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: .6;
+}
+
+/* Tail flick */
+.koi .tail{
+  fill: rgba(255,255,255,.25);
+  transform-box: fill-box;
+  transform-origin: 95% 50%;
+  animation: tailFlick 1.15s ease-in-out infinite;
+}
+@keyframes tailFlick{
+  0%   { transform: rotate(12deg); }
+  50%  { transform: rotate(-14deg); }
+  100% { transform: rotate(12deg); }
+}
+
+/* Sparkles (tiny twinkles near head) */
+.koi .sparkle{
+  fill: rgba(255,255,255,.55);
+  opacity: .0;
+  animation: twinkle 3.8s ease-in-out infinite;
+}
+.koi .sparkle.s2{ animation-delay: .7s; }
+.koi .sparkle.s3{ animation-delay: 1.3s; }
+
+@keyframes twinkle{
+  0%, 55%, 100% { opacity: 0; }
+  65%          { opacity: .75; }
+  75%          { opacity: .10; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .koi{ animation: none; }
+  .koi-layer{ transform: none; }
+}
