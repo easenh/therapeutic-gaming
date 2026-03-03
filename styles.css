@@ -332,7 +332,7 @@ html::before{
   inset: 0;
   z-index: -6;              /* behind canopy (-3/-4) */
   pointer-events: none;
-  opacity: .55;             /* water intensity */
+  opacity: .80;             /* water intensity */
 
   background:
     radial-gradient(1200px 700px at 20% 10%, rgba(209,241,229,.70) 0%, rgba(209,241,229,0) 62%),
