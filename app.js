@@ -224,3 +224,72 @@ async function init() {
 }
 
 init();
+
+// =========================
+// KOI: randomize + mouse parallax
+// Paste at bottom of app.js
+// =========================
+(function koiInit(){
+  const layer = document.getElementById("koiLayer");
+  if(!layer) return;
+
+  const kois = Array.from(layer.querySelectorAll(".koi"));
+  const colors = ["#ffb38a", "#ffa07a", "#ffd6a5", "#ffffff", "#ff9bbd", "#ffc08a"];
+
+  // Randomize each koi
+  kois.forEach((koi, i) => {
+    const depth = parseFloat(koi.dataset.depth || "0.6");
+    const top = Math.floor(10 + Math.random()*75); // 10%..85%
+    const size = Math.floor(95 + Math.random()*90); // 95..185px
+    const dur = Math.floor(38 + Math.random()*38); // 38..76s
+    const bob = (4.5 + Math.random()*3.5).toFixed(2); // 4.5..8s
+    const dep = (10 + Math.random()*10).toFixed(2); // 10..20s
+    const delay = (-Math.random()*dur).toFixed(2); // negative = already in motion
+
+    const left = Math.random() < 0.45; // some swim left
+    koi.classList.toggle("left", left);
+
+    koi.style.top = `${top}%`;
+    koi.style.setProperty("--koiSize", `${size}px`);
+    koi.style.setProperty("--koiDur", `${dur}s`);
+    koi.style.setProperty("--bobDur", `${bob}s`);
+    koi.style.setProperty("--depthDur", `${dep}s`);
+    koi.style.animationDelay = `${delay}s, ${delay}s, ${delay}s`;
+
+    // Depth feel: farther = smaller, blurrier, lighter
+    koi.style.setProperty("--koiOpacity", (0.65 - (1-depth)*0.25).toFixed(2));
+    koi.style.setProperty("--koiBlur", `${(1-depth)*0.8}px`);
+
+    // Pick a color
+    koi.style.setProperty("--koiColor", colors[(Math.random()*colors.length)|0]);
+
+    // Flip fish if swimming left (so it faces direction)
+    koi.style.transformOrigin = "center";
+    if(left){
+      koi.querySelector(".fish")?.setAttribute("transform", "scale(-1,1) translate(-220,0)");
+    }else{
+      koi.querySelector(".fish")?.setAttribute("transform", "");
+    }
+  });
+
+  // Mouse parallax (pond current)
+  let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+  function onMove(e){
+    const x = (e.clientX / window.innerWidth) * 2 - 1;  // -1..1
+    const y = (e.clientY / window.innerHeight) * 2 - 1; // -1..1
+    targetX = x;
+    targetY = y;
+  }
+  window.addEventListener("mousemove", onMove, { passive: true });
+
+  // Smooth follow
+  function tick(){
+    curX += (targetX - curX) * 0.06;
+    curY += (targetY - curY) * 0.06;
+    document.documentElement.style.setProperty("--pondX", curX.toFixed(3));
+    document.documentElement.style.setProperty("--pondY", curY.toFixed(3));
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
