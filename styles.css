@@ -1,19 +1,29 @@
 /* Cute, clean, mobile-first */
 :root{
-  --bg: #fbfbff;
-  --card: #ffffff;
-  --ink: #1f2430;
-  --muted: #566073;
-  --border: #e6e8f2;
-  --shadow: 0 10px 30px rgba(20,30,60,.08);
-  --radius: 20px;
+  /* Soft Matcha Pediatric Palette */
+  --bg:#f4f8f2;
+  --card:#ffffff;
+  --ink:#2a2f2a;
+  --muted:#6b756b;
+  --border:#e3ece2;
+  --shadow: 0 12px 32px rgba(82, 110, 84, .08);
+  --radius:20px;
 
-  --pain: #ff5aa5;
-  --sad: #ff7a3d;
-  --bst: #ffb020;
-  --blt: #9aa6ff;
-  --anx: #3bb3ff;
-  --cog: #19c37d;
+  /* Accent colors */
+  --matcha:#8fbf8f;
+  --matcha-dark:#6ea86e;
+  --mint:#cfe9cf;
+  --soft-yellow:#f6e7b4;
+  --soft-peach:#ffd9c9;
+  --soft-blue:#d9ebff;
+
+  /* Symptom icons */
+  --pink:#f58bb2;
+  --orange:#f6b26b;
+  --lav:#b7c4ff;
+  --blue:#79b8ff;
+  --green:#7acb9c;
+  --gray:#b6b6b6;
 }
 
 *{ box-sizing: border-box; }
@@ -69,8 +79,16 @@ h1{ margin:0; font-size: 22px; letter-spacing: .2px; }
 .card{
   background: var(--card);
   border:1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 22px;
+  padding:18px;
   box-shadow: var(--shadow);
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(82,110,84,.15);
 }
 
 .controls{ padding: 14px; }
@@ -154,11 +172,25 @@ input:focus,select:focus{ border-color: #c7ccff; box-shadow: 0 0 0 4px rgba(154,
 .tagline{ margin-top: 10px; color: #2b3242; font-size: 13px; line-height: 1.35; }
 .chips{ margin-top: 10px; display:flex; gap: 6px; flex-wrap: wrap; }
 .chip{
-  padding: 6px 10px;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:12px 14px;
+  border:1px solid var(--border);
   border-radius: 999px;
-  border: 1px solid var(--border);
-  font-size: 12px;
-  background: rgba(250,250,255,.85);
+  background: var(--mint);
+  cursor:pointer;
+  user-select:none;
+  transition: transform .05s ease, box-shadow .12s ease;
+  font-weight:500;
+}
+
+.chip:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(82,110,84,.12);
+}
+
+.chip[aria-pressed="true"]{
+  background: var(--matcha);
+  color:white;
 }
 
 .modal{
@@ -201,4 +233,21 @@ input:focus,select:focus{ border-color: #c7ccff; box-shadow: 0 0 0 4px rgba(154,
   .symptom-grid{ grid-template-columns: 1fr; }
   .grid{ grid-template-columns: 1fr 1fr; }
   h1{ font-size: 26px; }
+}
+
+/* --- Matcha Button Style --- */
+.btn{
+  border: none;
+  background: var(--matcha);
+  color:white;
+  border-radius:16px;
+  padding:10px 16px;
+  cursor:pointer;
+  box-shadow: 0 10px 20px rgba(110,168,110,.25);
+  transition: all .15s ease;
+}
+
+.btn:hover{
+  background: var(--matcha-dark);
+  transform: translateY(-2px);
 }
