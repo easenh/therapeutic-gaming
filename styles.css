@@ -281,7 +281,7 @@ body::before{
   content:"";
   position: fixed;
   inset: 0;
-  z-index: -3;
+  z-index: -2;
   pointer-events: none;
 
   opacity: var(--canopyOpacityA);
@@ -318,7 +318,7 @@ body::after{
   content:"";
   position: fixed;
   inset: 0;
-  z-index: -4;
+  z-index: -3;
   pointer-events: none;
 
   opacity: var(--canopyOpacityB);
