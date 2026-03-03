@@ -32,7 +32,11 @@ body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color: var(--ink);
-  background: radial-gradient(1200px 600px at 20% 0%, #eef1ff 0%, var(--bg) 55%);
+    background:
+    radial-gradient(1000px 600px at 15% 5%, #f7e6f1 0%, rgba(247,230,241,0) 65%),
+    radial-gradient(900px 500px at 85% 10%, #e6f4e6 0%, rgba(230,244,230,0) 65%),
+    radial-gradient(800px 500px at 50% 100%, #f3f8f3 0%, rgba(243,248,243,0) 70%),
+    var(--bg);
 }
 
 .top{
