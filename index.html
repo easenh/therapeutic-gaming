@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Therapeutic Gaming Finder</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="logo">🎮</div>
+      <div>
+        <h1>Therapeutic Gaming Finder</h1>
+        <p class="sub">Search games that can support kids during pain, sadness, boredom, anxiety/hyperactivity, or cognitive challenges.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span class="pill">Parent-friendly</span>
+      <span class="pill">Kid-friendly</span>
+      <span class="pill">Fast on phones</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="controls card">
+      <div class="control-row">
+        <label class="field">
+          <span>Search</span>
+          <input id="search" type="search" placeholder="Try: Minecraft, Overcooked, Abzu…" autocomplete="off"/>
+        </label>
+
+        <label class="field">
+          <span>Platform</span>
+          <select id="platform">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Age group</span>
+          <select id="age">
+            <option value="">All</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="symptoms">
+        <div class="symptom-title">Symptoms targeted</div>
+        <div class="symptom-grid" id="symptomGrid"></div>
+      </div>
+
+      <div class="hint">
+        Tip: tap a game card to open the full details (summary + “aspects & connections”). 
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="results-head">
+        <h2>Games</h2>
+        <div id="count" class="count"></div>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" class="modal-inner">
+      <button class="close" aria-label="Close">✕</button>
+      <div id="modalBody"></div>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <p>
+      This site shares educational information and is not medical advice. 
+      If a game increases distress, stop and choose a calmer option.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
